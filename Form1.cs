@@ -39,6 +39,7 @@ namespace GameTheoryLab1
 
         private bool softDom(int i1, int i2)
         {
+            
             bool fl = true;
             for (int j = 0; j < Y; j++)
             {
@@ -198,9 +199,43 @@ namespace GameTheoryLab1
             }
         }
 
+        
+
         private void button6_Click(object sender, EventArgs e)
         {
+            textBox8.Text = "";
+            int[] delIndex = new int[X];
+            for (int i = 0; i < X; i++) delIndex[i] = i;
+            bool fl = getMatrix(A);
+            if (!fl) return;
+            int ii = 0, ij = 0;
+            bool isDeleted = false;
+            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{ij}"] as TextBox);
+            while ((ii < X) && (delIndex[ii] != -1))
+            {
+                isDeleted = false;
+                ij = 0;
+                while ((ij < X) && (!isDeleted) && (delIndex[ij] != -1))
+                {
+                    if (ij != ii) isDeleted = softDom(ii, ij);                    
+                    ij++;
+                }
+                if (isDeleted)
+                {
+                    delIndex[ii] = -1;
+                    for (int j = 0; j < Y; j++)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{j}"] as TextBox).Text = "";
+                        
+                    }
 
+                }
+                ii++;
+            }
+            for (int i = 0; i < X; i++)
+            {
+                if (delIndex[i] != -1) textBox8.AppendText(Convert.ToString(++delIndex[i]) + "; ");
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -230,7 +265,42 @@ namespace GameTheoryLab1
             }
         }
 
-        
+        private void button9_Click(object sender, EventArgs e)
+        {
+            textBox8.Text = "";
+            int[] delIndex = new int[X];
+            for (int i = 0; i < X; i++) delIndex[i] = i;
+            bool fl = getMatrix(A);
+            if (!fl) return;
+            int ii = 0, ij = 0;
+            bool isDeleted = false;
+            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{ij}"] as TextBox);
+            while ((ii < X) && (delIndex[ii] != -1))
+            {
+                isDeleted = false;
+                ij = 0;
+                while ((ij < X) && (!isDeleted) && (delIndex[ij] != -1))
+                {
+                    if (ij != ii) isDeleted = hardDom(ii, ij);
+                    ij++;
+                }
+                if (isDeleted)
+                {
+                    delIndex[ii] = -1;
+                    for (int j = 0; j < Y; j++)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{j}"] as TextBox).Text = "";
+
+                    }
+
+                }
+                ii++;
+            }
+            for (int i = 0; i < X; i++)
+            {
+                if (delIndex[i]!=-1) textBox8.AppendText(Convert.ToString(++delIndex[i]) + "; ");
+            }
+        }
 
         private void CreateTablePanel(int columnCount, int rowCount)
         {

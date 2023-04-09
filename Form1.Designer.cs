@@ -55,6 +55,11 @@ namespace GameTheoryLab1
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +77,11 @@ namespace GameTheoryLab1
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBox8);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.button9);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.textBox7);
@@ -135,12 +145,11 @@ namespace GameTheoryLab1
             // 
             // button6
             // 
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(8, 218);
+            this.button6.Location = new System.Drawing.Point(96, 233);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(295, 23);
+            this.button6.Size = new System.Drawing.Size(94, 23);
             this.button6.TabIndex = 5;
-            this.button6.Text = "Удаление слабо доминируемых стратегий";
+            this.button6.Text = "1-й игрок";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -309,6 +318,50 @@ namespace GameTheoryLab1
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 203);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(287, 17);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Удаление слабо доминируемых стратегий";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 274);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(294, 17);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Удаление сильно доминируемых стратегий";
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(96, 304);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(94, 23);
+            this.button9.TabIndex = 13;
+            this.button9.Text = "1-й игрок";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(44, 330);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(210, 17);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Номера оставшихся стратегий";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(47, 359);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(207, 22);
+            this.textBox8.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -366,6 +419,11 @@ namespace GameTheoryLab1
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label11;
     }
 }
 

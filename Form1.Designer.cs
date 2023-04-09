@@ -80,7 +80,7 @@ namespace GameTheoryLab1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 78);
+            this.label5.Location = new System.Drawing.Point(5, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(132, 17);
             this.label5.TabIndex = 1;
@@ -88,7 +88,7 @@ namespace GameTheoryLab1
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(31, 21);
+            this.button4.Location = new System.Drawing.Point(96, 6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(94, 23);
             this.button4.TabIndex = 0;
@@ -118,7 +118,7 @@ namespace GameTheoryLab1
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(32, 46);
+            this.textBox1.Location = new System.Drawing.Point(26, 52);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 22);
             this.textBox1.TabIndex = 6;
@@ -126,7 +126,7 @@ namespace GameTheoryLab1
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(166, 46);
+            this.textBox2.Location = new System.Drawing.Point(160, 52);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 22);
             this.textBox2.TabIndex = 7;
@@ -135,16 +135,17 @@ namespace GameTheoryLab1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 46);
+            this.label2.Location = new System.Drawing.Point(3, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(21, 17);
             this.label2.TabIndex = 8;
             this.label2.Text = "X:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(136, 46);
+            this.label3.Location = new System.Drawing.Point(133, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(21, 17);
             this.label3.TabIndex = 9;
@@ -198,7 +199,7 @@ namespace GameTheoryLab1
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(145, 78);
+            this.label6.Location = new System.Drawing.Point(144, 32);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(149, 17);
             this.label6.TabIndex = 2;
@@ -206,14 +207,14 @@ namespace GameTheoryLab1
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(9, 111);
+            this.textBox4.Location = new System.Drawing.Point(8, 65);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(129, 22);
             this.textBox4.TabIndex = 3;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(148, 110);
+            this.textBox5.Location = new System.Drawing.Point(147, 64);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(143, 22);
             this.textBox5.TabIndex = 4;

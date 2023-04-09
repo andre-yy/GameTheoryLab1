@@ -50,10 +50,10 @@ namespace GameTheoryLab1
             }
         }
 
-        private void ShowMatrix(int rowCount, int columnCount)
+        private void ShowMatrix(int columnCount, int rowCount)
         {
             //создание TableLayoutPanel
-            CreateTablePanel(rowCount, columnCount);
+            CreateTablePanel(columnCount, rowCount);
 
             //находим по имени только что созданную TableLayoutPanel
             var tablePanel = this.Controls
@@ -118,9 +118,12 @@ namespace GameTheoryLab1
 
         }
 
-        
+        private void label2_Click(object sender, EventArgs e)
+        {
 
-        private void CreateTablePanel(int rowCount, int columnCount)
+        }
+
+        private void CreateTablePanel(int columnCount, int rowCount)
         {
             //если были ранее созданы с тем же именем TableLayoutPanel
             //то удаляем их
@@ -135,8 +138,8 @@ namespace GameTheoryLab1
 
                 Location = pos,
                 Name = _TABLE_PANEL_NAME,
-                RowCount = rowCount,
-                ColumnCount = columnCount,
+                RowCount = columnCount,
+                ColumnCount = rowCount,
                 AutoScroll = true,
                 Width = 500,
                 Height = 300

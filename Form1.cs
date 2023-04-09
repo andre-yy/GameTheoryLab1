@@ -14,13 +14,16 @@ namespace GameTheoryLab1
     public partial class Form1 : Form
     {
         int X = 2, Y = 2;
-        
+        double[,] A;
+        Form1 my;
+
         //public static List<TextBox> TextBoxes = new List<TextBox>();
         private const string _TABLE_PANEL_NAME = "tableLayoutPanel";
         public Form1()
         {
             InitializeComponent();
-            float[,] A = new float[X, Y];
+            A = new double[X, Y];
+            my = this;
             ShowMatrix(X, Y);
         }
 
@@ -34,7 +37,18 @@ namespace GameTheoryLab1
 
         }
 
-        
+        private void getMatrix(double[,] A)
+        {
+            for (int i = 0; i < X; i++)
+            {
+                for (int j = 0; j < Y; j++)
+                {
+                    
+                    A[i, j] = Convert.ToDouble(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text);
+                  
+                }
+            }
+        }
 
         private void ShowMatrix(int rowCount, int columnCount)
         {
@@ -64,14 +78,47 @@ namespace GameTheoryLab1
         {
             X = Convert.ToInt32(textBox1.Text);
             Y = Convert.ToInt32(textBox2.Text);
+            
+            A = new double[X, Y];
             ShowMatrix(X, Y);
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            FileStream file = new FileStream(Convert.ToString(textBox3), FileMode.Open);
+            //FileStream file = new FileStream(Convert.ToString(textBox3), FileMode.Open);
             
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            getMatrix(A);
+            double[] minimums = new double[X];
+            double minim;// = A[0, 0];// maxim = A[0, 0];
+            int[] minInd = new int[X];
+            for (int i = 0; i < X; i++)
+            {
+                minim = A[i, 0];
+                for (int j = 0; j < Y; j++)
+                {
+                    if (A[i, j] <= minim)
+                    {
+                        minim = A[i, j];
+                        minInd[i] = j;
+                    }
+                }
+                minimums[i] = minim;
+               
+            }
+            double maxv = minimums.Max();
+            textBox5.Text = Convert.ToString(maxv);
+            int maxj = minInd[Array.IndexOf(minimums, maxv)];
+            int maxi = Array.IndexOf(minimums, maxv);
+            textBox4.Text = Convert.ToString(++maxi);
+            textBox4.AppendText("; " + ++maxj);
+
+        }
+
+        
 
         private void CreateTablePanel(int rowCount, int columnCount)
         {

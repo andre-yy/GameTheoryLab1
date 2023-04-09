@@ -37,17 +37,44 @@ namespace GameTheoryLab1
 
         }
 
-        private void getMatrix(double[,] A)
+        private bool softDom(int i1, int i2)
+        {
+            bool fl = true;
+            for (int j = 0; j < Y; j++)
+            {
+                if (A[i1, j] > A[i2, j]) fl = false;
+            }
+            return fl;
+        }
+
+        private bool hardDom(int i1, int i2)
+        {
+            bool fl = true;
+            for (int j = 0; j < Y; j++)
+            {
+                if (A[i1, j] >= A[i2, j]) fl = false;
+            }
+            return fl;
+        }
+
+        private bool getMatrix(double[,] A)
         {
             for (int i = 0; i < X; i++)
             {
                 for (int j = 0; j < Y; j++)
                 {
-                    
-                    A[i, j] = Convert.ToDouble(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text);
-                  
+                    try
+                    {
+                        A[i, j] = Convert.ToDouble(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text);
+                        
+                    } catch (FormatException e)
+                    {
+                        MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
+                        return false;
+                    }
                 }
             }
+            return true;
         }
 
         private void ShowMatrix(int columnCount, int rowCount)
@@ -89,11 +116,10 @@ namespace GameTheoryLab1
             
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void maxmin(double[,] A, out double maxv, out int maxi, out int maxj)
         {
-            getMatrix(A);
             double[] minimums = new double[X];
-            double minim;// = A[0, 0];// maxim = A[0, 0];
+            double minim;
             int[] minInd = new int[X];
             for (int i = 0; i < X; i++)
             {
@@ -107,12 +133,48 @@ namespace GameTheoryLab1
                     }
                 }
                 minimums[i] = minim;
-               
+
             }
-            double maxv = minimums.Max();
+            maxv = minimums.Max();
+            maxj = minInd[Array.IndexOf(minimums, maxv)];
+            maxi = Array.IndexOf(minimums, maxv);            
+        }
+
+        private void minmax(double[,] A, out double minv, out int mini, out int minj)
+        {
+            double[] maximus = new double[Y];
+            double maxim;
+            int[] maxInd = new int[Y];
+            for (int j = 0; j < Y; j++)
+            {
+                maxim = A[0, j];
+                for (int i = 0; i < X; i++)
+                {
+                    if (A[i, j] >= maxim)
+                    {
+                        maxim = A[i, j];
+                        maxInd[j] = i;
+                    }
+                }
+                maximus[j] = maxim;
+
+            }
+            minv = maximus.Min();
+            minj = maxInd[Array.IndexOf(maximus, minv)];
+            mini = Array.IndexOf(maximus, minv);
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            bool fl = getMatrix(A);
+            if (!fl) return;
+            double maxv;
+            int maxi;
+            int maxj;
+            maxmin(A, out maxv, out maxi, out maxj);
+            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{maxi}{maxj}"] as TextBox).BackColor = Color.BlueViolet;
             textBox5.Text = Convert.ToString(maxv);
-            int maxj = minInd[Array.IndexOf(minimums, maxv)];
-            int maxi = Array.IndexOf(minimums, maxv);
             textBox4.Text = Convert.ToString(++maxi);
             textBox4.AppendText("; " + ++maxj);
 
@@ -123,6 +185,53 @@ namespace GameTheoryLab1
 
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Random r = new Random();
+            for (int i = 0; i < X; i++)
+            {
+                for (int j = 0; j < Y; j++)
+                {
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text = Convert.ToString(r.Next(-10, 10));
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).BackColor = SystemColors.Window;
+                }
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            bool fl = getMatrix(A);
+            if (!fl) return;
+            double minv;
+            int mini;
+            int minj;
+            minmax(A, out minv, out mini, out minj);
+            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{minj}{mini}"] as TextBox).BackColor = Color.Green;
+            textBox7.Text = Convert.ToString(minv);
+            textBox6.Text = Convert.ToString(++minj);
+            textBox6.AppendText("; " + ++mini);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            
+            for (int i = 0; i < X; i++)
+            {
+                for (int j = 0; j < Y; j++)
+                {
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text = "";
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).BackColor = SystemColors.Window;
+                }
+            }
+        }
+
+        
+
         private void CreateTablePanel(int columnCount, int rowCount)
         {
             //если были ранее созданы с тем же именем TableLayoutPanel
@@ -132,7 +241,7 @@ namespace GameTheoryLab1
 
             //позиция для новой панели
             Point pos = new Point { X = 10, Y = 65 };
-           
+
             TableLayoutPanel tablePanel = new TableLayoutPanel
             {
 
@@ -142,9 +251,13 @@ namespace GameTheoryLab1
                 ColumnCount = rowCount,
                 AutoScroll = true,
                 Width = 500,
-                Height = 300
+                Height = 300,
+               
+                
+                //Dock = DockStyle.Left
                 //AutoSize = true,
                 //MaximumSize = size
+
                 
             };
 

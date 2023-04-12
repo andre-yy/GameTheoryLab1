@@ -84,7 +84,7 @@ namespace GameTheoryLab1
                 {
                     try
                     {
-                        A[i, j] = Convert.ToDouble(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text);
+                        A[i, j] = Convert.ToDouble(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text);
                         
                     } catch (FormatException e)
                     {
@@ -104,7 +104,7 @@ namespace GameTheoryLab1
                 {
                     try
                     {
-                        A[i, j] = -Convert.ToDouble(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text);
+                        A[i, j] = -Convert.ToDouble(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text);
 
                     }
                     catch (FormatException e)
@@ -133,7 +133,7 @@ namespace GameTheoryLab1
             {
                 for (int j = 0; j < rowCount; j++)
                 {
-                    var txt = $"textBox{i}{j}";
+                    var txt = $"textBox{i},{j}";
                     //новый текстбокс с текстовкой, именем, шириной
                     var tb = new TextBox { Text = "", Name = txt, Width = 30 };
                     //добавляем
@@ -154,7 +154,37 @@ namespace GameTheoryLab1
         private void button2_Click_1(object sender, EventArgs e)
         {
             //FileStream file = new FileStream(Convert.ToString(textBox3), FileMode.Open);
-            
+            try
+            {
+                var fs = new StreamReader(textBox3.Text);
+                
+                var line = fs.ReadLine();
+                string[] str = line.Split(' ');
+                textBox1.Text = str[0];
+                textBox2.Text = str[1];
+                
+                button1_Click(sender, e);
+                for (int i = 0; i < X; i++)
+                {
+                    line = fs.ReadLine();
+                    str = line.Split(' ');
+                    for (int j = 0; j < Y; j++)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = str[j];
+                    }
+                    
+                }
+                fs.Close();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
+            }
+            catch(FileNotFoundException ex)
+            {
+                MessageBox.Show("Файл не найден", "Ошибка");
+            }
+
         }
 
         private void maxmin(double[,] A, out double maxv, out int maxi, out int maxj)
@@ -214,7 +244,7 @@ namespace GameTheoryLab1
             int maxi;
             int maxj;
             maxmin(A, out maxv, out maxi, out maxj);
-            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{maxi}{maxj}"] as TextBox).BackColor = Color.BlueViolet;
+            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{maxi},{maxj}"] as TextBox).BackColor = Color.BlueViolet;
             textBox5.Text = Convert.ToString(maxv);
             textBox4.Text = Convert.ToString(++maxi);
             textBox4.AppendText("; " + ++maxj);
@@ -233,8 +263,8 @@ namespace GameTheoryLab1
             {
                 for (int j = 0; j < Y; j++)
                 {
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text = Convert.ToString(r.Next(-10, 10));
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).BackColor = SystemColors.Window;
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(r.Next(-10, 10));
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
                 }
             }
         }
@@ -250,7 +280,7 @@ namespace GameTheoryLab1
             if (!fl) return;
             int ii = 0, ij = 0;
             bool isDeleted = false;
-            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{ij}"] as TextBox);
+            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii},{ij}"] as TextBox);
             while ((ii < X))
             {
                 isDeleted = false;
@@ -265,7 +295,7 @@ namespace GameTheoryLab1
                     delIndex[ii] = -1;
                     for (int j = 0; j < Y; j++)
                     {
-                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{j}"] as TextBox).Text = "";
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii},{j}"] as TextBox).Text = "";
                         
                     }
 
@@ -286,7 +316,7 @@ namespace GameTheoryLab1
             int mini;
             int minj;
             minmax(A, out minv, out mini, out minj);
-            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{minj}{mini}"] as TextBox).BackColor = Color.Green;
+            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{minj},{mini}"] as TextBox).BackColor = Color.Green;
             textBox7.Text = Convert.ToString(minv);
             textBox6.Text = Convert.ToString(++minj);
             textBox6.AppendText("; " + ++mini);
@@ -299,8 +329,8 @@ namespace GameTheoryLab1
             {
                 for (int j = 0; j < Y; j++)
                 {
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text = "";
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).BackColor = SystemColors.Window;
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = "";
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
                 }
             }
         }
@@ -314,7 +344,7 @@ namespace GameTheoryLab1
             if (!fl) return;
             int ii = 0, ij = 0;
             bool isDeleted = false;
-            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{ij}"] as TextBox);
+            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii},{ij}"] as TextBox);
             while ((ii < X))
             {
                 isDeleted = false;
@@ -329,7 +359,7 @@ namespace GameTheoryLab1
                     delIndex[ii] = -1;
                     for (int j = 0; j < Y; j++)
                     {
-                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii}{j}"] as TextBox).Text = "";
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ii},{j}"] as TextBox).Text = "";
 
                     }
 
@@ -353,7 +383,7 @@ namespace GameTheoryLab1
             if (!fl) return;
             int ji = 0, jj = 0;
             bool isDeleted = false;
-            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ji}{jj}"] as TextBox);
+            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ji},{jj}"] as TextBox);
             while ((jj < Y))
             {
                 isDeleted = false;
@@ -368,7 +398,7 @@ namespace GameTheoryLab1
                     delIndex[jj] = -1;
                     for (int i = 0; i < X; i++)
                     {
-                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{jj}"] as TextBox).Text = "";
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{jj}"] as TextBox).Text = "";
 
                     }
 
@@ -392,7 +422,7 @@ namespace GameTheoryLab1
             if (!fl) return;
             int ji = 0, jj = 0;
             bool isDeleted = false;
-            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ji}{jj}"] as TextBox);
+            var matr = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{ji},{jj}"] as TextBox);
             while ((jj < Y))
             {
                 isDeleted = false;
@@ -407,7 +437,7 @@ namespace GameTheoryLab1
                     delIndex[jj] = -1;
                     for (int i = 0; i < X; i++)
                     {
-                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{jj}"] as TextBox).Text = "";
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{jj}"] as TextBox).Text = "";
 
                     }
 
@@ -427,10 +457,37 @@ namespace GameTheoryLab1
             {
                 for (int j = 0; j < Y; j++)
                 {
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).Text = Convert.ToString(A[i, j]); ;
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i}{j}"] as TextBox).BackColor = SystemColors.Window;
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(A[i, j]); ;
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            /*using (FileStream fs = new FileStream(textBox3.Text, FileMode.Create, FileAccess.Write))
+            {
+                
+            }*/
+            try
+            {
+                var fs = new StreamWriter(textBox3.Text);
+                fs.WriteLine(textBox1.Text + " " + textBox2.Text);
+                for (int i = 0; i < X; i++)
+                {
+                    for (int j = 0; j < Y; j++)
+                    {
+                        fs.Write(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text + " ");
+                    }
+                    fs.Write("\n");
+                }
+                fs.Flush();
+                fs.Close();
+            } catch(ArgumentException ex)
+            {
+                MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
+            }
+           
         }
 
         private void CreateTablePanel(int columnCount, int rowCount)

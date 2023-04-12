@@ -31,6 +31,9 @@ namespace GameTheoryLab1
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
@@ -60,9 +63,6 @@ namespace GameTheoryLab1
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +106,36 @@ namespace GameTheoryLab1
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(96, 430);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(94, 23);
+            this.button12.TabIndex = 18;
+            this.button12.Text = "Вернуть";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(196, 304);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(94, 23);
+            this.button11.TabIndex = 17;
+            this.button11.Text = "2-й игрок";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(196, 232);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(94, 23);
+            this.button10.TabIndex = 16;
+            this.button10.Text = "2-й игрок";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // textBox8
             // 
@@ -312,7 +342,6 @@ namespace GameTheoryLab1
             // 
             // button2
             // 
-            this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(207, 492);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 23);
@@ -323,13 +352,13 @@ namespace GameTheoryLab1
             // 
             // button3
             // 
-            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(312, 492);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 23);
             this.button3.TabIndex = 12;
             this.button3.Text = "Сохранить";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label4
             // 
@@ -342,11 +371,11 @@ namespace GameTheoryLab1
             // 
             // textBox3
             // 
-            this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(101, 492);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 22);
             this.textBox3.TabIndex = 14;
+            this.textBox3.Text = "test.txt";
             // 
             // button5
             // 
@@ -367,36 +396,6 @@ namespace GameTheoryLab1
             this.button8.Text = "Очистить";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(196, 232);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(94, 23);
-            this.button10.TabIndex = 16;
-            this.button10.Text = "2-й игрок";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(196, 304);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(94, 23);
-            this.button11.TabIndex = 17;
-            this.button11.Text = "2-й игрок";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(96, 430);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(94, 23);
-            this.button12.TabIndex = 18;
-            this.button12.Text = "Вернуть";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // Form1
             // 

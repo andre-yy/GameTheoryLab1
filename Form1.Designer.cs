@@ -71,6 +71,8 @@ namespace GameTheoryLab1
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.button13 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -286,6 +288,8 @@ namespace GameTheoryLab1
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.textBox11);
+            this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Controls.Add(this.button13);
             this.tabPage2.Controls.Add(this.textBox10);
             this.tabPage2.Controls.Add(this.label14);
@@ -438,9 +442,9 @@ namespace GameTheoryLab1
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(61, 83);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(24, 17);
+            this.label13.Size = new System.Drawing.Size(28, 17);
             this.label13.TabIndex = 2;
-            this.label13.Text = "p=";
+            this.label13.Text = "p =";
             // 
             // textBox9
             // 
@@ -454,9 +458,9 @@ namespace GameTheoryLab1
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(154, 83);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(24, 17);
+            this.label14.Size = new System.Drawing.Size(28, 17);
             this.label14.TabIndex = 4;
-            this.label14.Text = "q=";
+            this.label14.Text = "q =";
             // 
             // textBox10
             // 
@@ -474,6 +478,7 @@ namespace GameTheoryLab1
             this.button13.TabIndex = 6;
             this.button13.Text = "Расчёт";
             this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // checkBox2
             // 
@@ -484,6 +489,22 @@ namespace GameTheoryLab1
             this.checkBox2.TabIndex = 17;
             this.checkBox2.Text = "Биматричная";
             this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(64, 133);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(32, 17);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "σ = ";
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(93, 133);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(145, 22);
+            this.textBox11.TabIndex = 8;
             // 
             // Form1
             // 
@@ -561,6 +582,8 @@ namespace GameTheoryLab1
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Label label15;
     }
 }
 

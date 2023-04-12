@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+
+
 namespace GameTheoryLab1
 {
     public partial class Form1 : Form
@@ -650,6 +652,20 @@ namespace GameTheoryLab1
                 MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
             }
            
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            double p, q;
+            bool fl = getMatrix2(A, B);
+            if (!fl) return;
+            q = (A[1, 1] - A[0, 1]) / (A[0, 0] - A[0, 1] - A[1, 0] + A[1, 1]);
+            p = (B[1, 1] - B[1, 0]) / (B[0, 0] - B[0, 1] - B[1, 0] + B[1, 1]);
+            textBox9.Text = Convert.ToString(p);
+            textBox10.Text = Convert.ToString(q);
+            p = System.Math.Round(p, 2);
+            q = System.Math.Round(q, 2);
+            textBox11.Text = "((" + p + ";" + (1-p) + ");(" + q + ";" + (1-q) + "))";
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

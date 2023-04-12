@@ -73,6 +73,7 @@ namespace GameTheoryLab1
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
+            this.button14 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -288,6 +289,7 @@ namespace GameTheoryLab1
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button14);
             this.tabPage2.Controls.Add(this.textBox11);
             this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Controls.Add(this.button13);
@@ -489,6 +491,7 @@ namespace GameTheoryLab1
             this.checkBox2.TabIndex = 17;
             this.checkBox2.Text = "Биматричная";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // label15
             // 
@@ -505,6 +508,17 @@ namespace GameTheoryLab1
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(145, 22);
             this.textBox11.TabIndex = 8;
+            // 
+            // button14
+            // 
+            this.button14.Enabled = false;
+            this.button14.Location = new System.Drawing.Point(59, 181);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(179, 23);
+            this.button14.TabIndex = 9;
+            this.button14.Text = "Чистые стратегии";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // Form1
             // 
@@ -584,6 +598,7 @@ namespace GameTheoryLab1
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button14;
     }
 }
 

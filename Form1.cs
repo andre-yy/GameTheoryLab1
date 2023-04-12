@@ -623,35 +623,63 @@ namespace GameTheoryLab1
             {
                 
             }*/
-            try
+            if (!checkBox2.Checked)
             {
-                var fs = new StreamWriter(textBox3.Text);
-                fs.WriteLine(textBox1.Text + " " + textBox2.Text);
-                for (int i = 0; i < X; i++)
+                try
                 {
-                    for (int j = 0; j < Y; j++)
+                    var fs = new StreamWriter(textBox3.Text);
+                    fs.WriteLine(textBox1.Text + " " + textBox2.Text);
+                    for (int i = 0; i < X; i++)
                     {
-                        var str = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text.Split(' ');
-                        fs.Write(str[0] + " ");
+                        for (int j = 0; j < Y; j++)
+                        {
+                            fs.Write(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text);
+                            
+                        }
+                        fs.Write("\n");
+                                        
                     }
-                    fs.Write("\n");
+                    fs.Flush();
+                    fs.Close();
                 }
-                for (int i = 0; i < X; i++)
+                catch (ArgumentException ex)
                 {
-                    for (int j = 0; j < Y; j++)
-                    {
-                        var str = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text.Split(' ');
-                        fs.Write(str[1] + " ");
-                    }
-                    fs.Write("\n");
+                    MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
                 }
-                fs.Flush();
-                fs.Close();
-            } catch(ArgumentException ex)
-            {
-                MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
             }
-           
+            else
+            {
+
+                try
+                {
+                    var fs = new StreamWriter(textBox3.Text);
+                    fs.WriteLine(textBox1.Text + " " + textBox2.Text);
+                    for (int i = 0; i < X; i++)
+                    {
+                        for (int j = 0; j < Y; j++)
+                        {
+                            var str = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text.Split(' ');
+                            fs.Write(str[0] + " ");
+                        }
+                        fs.Write("\n");
+                    }
+                    for (int i = 0; i < X; i++)
+                    {
+                        for (int j = 0; j < Y; j++)
+                        {
+                            var str = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text.Split(' ');
+                            fs.Write(str[1] + " ");
+                        }
+                        fs.Write("\n");
+                    }
+                    fs.Flush();
+                    fs.Close();
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
+                }
+            }
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -666,6 +694,18 @@ namespace GameTheoryLab1
             p = System.Math.Round(p, 2);
             q = System.Math.Round(q, 2);
             textBox11.Text = "((" + p + ";" + (1-p) + ");(" + q + ";" + (1-q) + "))";
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked) button14.Enabled = true; else button14.Enabled = false;
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            bool fl = getMatrix2(A, B);
+            if (!fl) return;
+
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

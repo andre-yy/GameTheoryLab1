@@ -14,13 +14,14 @@ namespace GameTheoryLab1
     public partial class Form1 : Form
     {
         int X = 2, Y = 2;
-        double[,] A;
+        double[,] A, B;
         Form1 my;       
         private const string _TABLE_PANEL_NAME = "tableLayoutPanel";
         public Form1()
         {
             InitializeComponent();
             A = new double[X, Y];
+            B = new double[X, Y];
             my = this;
             ShowMatrix(X, Y);
         }
@@ -76,8 +77,9 @@ namespace GameTheoryLab1
             return fl;
         }
 
-        private bool getMatrix(double[,] A)
+        private bool getMatrix1(double[,] A)
         {
+            
             for (int i = 0; i < X; i++)
             {
                 for (int j = 0; j < Y; j++)
@@ -96,7 +98,31 @@ namespace GameTheoryLab1
             return true;
         }
 
-        private bool getMatrix2(double[,] A)
+        private bool getMatrix2(double[,] A, double[,] B)
+        {
+
+            for (int i = 0; i < X; i++)
+            {
+                for (int j = 0; j < Y; j++)
+                {
+                    try
+                    {
+                        string str = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text;
+                        string[] spl = str.Split(' ');
+                        A[i, j] = Convert.ToDouble(spl[0]);
+                        B[i, j] = Convert.ToDouble(spl[1]);
+                    }
+                    catch (FormatException e)
+                    {
+                        MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private bool getMatrix3(double[,] A)
         {
             for (int i = 0; i < X; i++)
             {
@@ -148,41 +174,87 @@ namespace GameTheoryLab1
             Y = Convert.ToInt32(textBox2.Text);
             
             A = new double[X, Y];
+            B = new double[X, Y];
             ShowMatrix(X, Y);
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             //FileStream file = new FileStream(Convert.ToString(textBox3), FileMode.Open);
-            try
+            if (!checkBox2.Checked)
             {
-                var fs = new StreamReader(textBox3.Text);
-                
-                var line = fs.ReadLine();
-                string[] str = line.Split(' ');
-                textBox1.Text = str[0];
-                textBox2.Text = str[1];
-                
-                button1_Click(sender, e);
-                for (int i = 0; i < X; i++)
+                try
                 {
-                    line = fs.ReadLine();
-                    str = line.Split(' ');
-                    for (int j = 0; j < Y; j++)
+                    var fs = new StreamReader(textBox3.Text);
+
+                    var line = fs.ReadLine();
+                    string[] str = line.Split(' ');
+                    textBox1.Text = str[0];
+                    textBox2.Text = str[1];
+
+                    button1_Click(sender, e);
+                    for (int i = 0; i < X; i++)
                     {
-                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = str[j];
+                        line = fs.ReadLine();
+                        str = line.Split(' ');
+                        for (int j = 0; j < Y; j++)
+                        {
+                            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = str[j];
+                        }
+
                     }
-                    
+                    fs.Close();
                 }
-                fs.Close();
-            }
-            catch (ArgumentException ex)
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
+                }
+                catch (FileNotFoundException ex)
+                {
+                    MessageBox.Show("Файл не найден", "Ошибка");
+                }
+            }else
             {
-                MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
-            }
-            catch(FileNotFoundException ex)
-            {
-                MessageBox.Show("Файл не найден", "Ошибка");
+                try
+                {
+                    var fs = new StreamReader(textBox3.Text);
+
+                    var line = fs.ReadLine();
+                    string[] str = line.Split(' ');
+                    textBox1.Text = str[0];
+                    textBox2.Text = str[1];
+
+                    button1_Click(sender, e);
+                    for (int i = 0; i < X; i++)
+                    {
+                        line = fs.ReadLine();
+                        str = line.Split(' ');
+                        for (int j = 0; j < Y; j++)
+                        {
+                            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = str[j];
+                        }
+
+                    }
+                    for (int i = 0; i < X; i++)
+                    {
+                        line = fs.ReadLine();
+                        str = line.Split(' ');
+                        for (int j = 0; j < Y; j++)
+                        {
+                            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).AppendText(" " + str[j]);
+                        }
+
+                    }
+                    fs.Close();
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
+                }
+                catch (FileNotFoundException ex)
+                {
+                    MessageBox.Show("Файл не найден", "Ошибка");
+                }
             }
 
         }
@@ -238,16 +310,24 @@ namespace GameTheoryLab1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            bool fl = getMatrix(A);
-            if (!fl) return;
-            double maxv;
-            int maxi;
-            int maxj;
-            maxmin(A, out maxv, out maxi, out maxj);
-            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{maxi},{maxj}"] as TextBox).BackColor = Color.BlueViolet;
-            textBox5.Text = Convert.ToString(maxv);
-            textBox4.Text = Convert.ToString(++maxi);
-            textBox4.AppendText("; " + ++maxj);
+            if (!checkBox2.Checked)
+            {
+                bool fl = getMatrix1(A);
+                if (!fl) return;
+            }else
+            {
+                bool fl = getMatrix2(A, B);
+                if (!fl) return;
+            }
+                double maxv;
+                int maxi;
+                int maxj;
+                maxmin(A, out maxv, out maxi, out maxj);
+                ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{maxi},{maxj}"] as TextBox).BackColor = Color.BlueViolet;
+                textBox5.Text = Convert.ToString(maxv);
+                textBox4.Text = Convert.ToString(++maxi);
+                textBox4.AppendText("; " + ++maxj);
+            
 
         }
 
@@ -263,8 +343,17 @@ namespace GameTheoryLab1
             {
                 for (int j = 0; j < Y; j++)
                 {
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(r.Next(-10, 10));
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
+                    if (!checkBox2.Checked)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(r.Next(-10, 10));
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
+                    }
+                    else
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(r.Next(-10, 10));
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).AppendText(" " + Convert.ToString(r.Next(-10, 10)));
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
+                    }
                 }
             }
         }
@@ -276,7 +365,15 @@ namespace GameTheoryLab1
             textBox8.Text = "";
             int[] delIndex = new int[X];
             for (int i = 0; i < X; i++) delIndex[i] = i;
-            bool fl = getMatrix(A);
+            bool fl;
+            if (!checkBox2.Checked)
+            {
+                fl = getMatrix1(A);
+            }
+            else
+            {
+                fl = getMatrix2(A, B);
+            }
             if (!fl) return;
             int ii = 0, ij = 0;
             bool isDeleted = false;
@@ -310,16 +407,31 @@ namespace GameTheoryLab1
 
         private void button7_Click(object sender, EventArgs e)
         {
-            bool fl = getMatrix(A);
-            if (!fl) return;
-            double minv;
-            int mini;
-            int minj;
-            minmax(A, out minv, out mini, out minj);
-            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{minj},{mini}"] as TextBox).BackColor = Color.Green;
-            textBox7.Text = Convert.ToString(minv);
-            textBox6.Text = Convert.ToString(++minj);
-            textBox6.AppendText("; " + ++mini);
+            if (!checkBox2.Checked)
+            {
+                bool fl = getMatrix1(A);
+                if (!fl) return;
+                double minv;
+                int mini;
+                int minj;
+                minmax(A, out minv, out mini, out minj);
+                ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{minj},{mini}"] as TextBox).BackColor = Color.Green;
+                textBox7.Text = Convert.ToString(minv);
+                textBox6.Text = Convert.ToString(++minj);
+                textBox6.AppendText("; " + ++mini);
+            }else
+            {
+                bool fl = getMatrix2(A, B);
+                if (!fl) return;
+                double minv;
+                int mini;
+                int minj;
+                minmax(B, out minv, out mini, out minj);
+                ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{minj},{mini}"] as TextBox).BackColor = Color.Green;
+                textBox7.Text = Convert.ToString(minv);
+                textBox6.Text = Convert.ToString(++minj);
+                textBox6.AppendText("; " + ++mini);
+            }
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -340,7 +452,15 @@ namespace GameTheoryLab1
             textBox8.Text = "";
             int[] delIndex = new int[X];
             for (int i = 0; i < X; i++) delIndex[i] = i;
-            bool fl = getMatrix(A);
+            bool fl;
+            if (!checkBox2.Checked)
+            {
+                fl = getMatrix1(A);
+            }
+            else
+            {
+                fl = getMatrix2(A, B);
+            }
             if (!fl) return;
             int ii = 0, ij = 0;
             bool isDeleted = false;
@@ -374,12 +494,21 @@ namespace GameTheoryLab1
 
         private void button10_Click(object sender, EventArgs e)
         {
-            getMatrix(A);
-            double[,] B = new double[X, Y];
+            //getMatrix1(A);
+            //double[,] B = new double[X, Y];
             textBox8.Text = "";
             int[] delIndex = new int[Y];
             for (int i = 0; i < Y; i++) delIndex[i] = i;
-            bool fl = getMatrix2(B);
+            bool fl;
+            if (!checkBox2.Checked)
+            {
+                fl = getMatrix3(B);
+                getMatrix1(A);
+            }
+            else
+            {
+                fl = getMatrix2(A, B);
+            }
             if (!fl) return;
             int ji = 0, jj = 0;
             bool isDeleted = false;
@@ -413,12 +542,21 @@ namespace GameTheoryLab1
 
         private void button11_Click(object sender, EventArgs e)
         {
-            double[,] B = new double[X, Y];
-            getMatrix(A);
+            //double[,] B = new double[X, Y];
+            //getMatrix1(A);
             textBox8.Text = "";
             int[] delIndex = new int[Y];
             for (int i = 0; i < Y; i++) delIndex[i] = i;
-            bool fl = getMatrix2(B);
+            bool fl;
+            if (!checkBox2.Checked)
+            {
+                fl = getMatrix3(B);
+                getMatrix1(A);
+            }
+            else
+            {
+                fl = getMatrix2(A, B);
+            }
             if (!fl) return;
             int ji = 0, jj = 0;
             bool isDeleted = false;
@@ -452,13 +590,27 @@ namespace GameTheoryLab1
 
         private void button12_Click(object sender, EventArgs e)
         {
-
-            for (int i = 0; i < X; i++)
+            if (!checkBox2.Checked)
             {
-                for (int j = 0; j < Y; j++)
+                for (int i = 0; i < X; i++)
                 {
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(A[i, j]); ;
-                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
+                    for (int j = 0; j < Y; j++)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(A[i, j]); ;
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < X; i++)
+                {
+                    for (int j = 0; j < Y; j++)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = Convert.ToString(A[i, j]);
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).AppendText(" " + Convert.ToString(B[i, j]));
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
+                    }
                 }
             }
         }
@@ -477,7 +629,17 @@ namespace GameTheoryLab1
                 {
                     for (int j = 0; j < Y; j++)
                     {
-                        fs.Write(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text + " ");
+                        var str = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text.Split(' ');
+                        fs.Write(str[0] + " ");
+                    }
+                    fs.Write("\n");
+                }
+                for (int i = 0; i < X; i++)
+                {
+                    for (int j = 0; j < Y; j++)
+                    {
+                        var str = ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text.Split(' ');
+                        fs.Write(str[1] + " ");
                     }
                     fs.Write("\n");
                 }
@@ -488,6 +650,28 @@ namespace GameTheoryLab1
                 MessageBox.Show("Есть пустые поля, которые необходимо заполнить", "Ошибка");
             }
            
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox1.Text = "2";
+                textBox2.Text = "2";
+                button1_Click(sender, e);
+                textBox1.Enabled = false;
+                textBox2.Enabled = false;
+                button13.Enabled = true;
+                checkBox2.Checked = true;
+                checkBox2.Enabled = false;
+            }
+            else
+            {
+                textBox1.Enabled = true;
+                textBox2.Enabled = true;
+                button13.Enabled = false;
+                checkBox2.Enabled = true;
+            }
         }
 
         private void CreateTablePanel(int columnCount, int rowCount)

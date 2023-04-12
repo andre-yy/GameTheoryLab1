@@ -63,8 +63,17 @@ namespace GameTheoryLab1
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -277,6 +286,13 @@ namespace GameTheoryLab1
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button13);
+            this.tabPage2.Controls.Add(this.textBox10);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.textBox9);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -397,11 +413,84 @@ namespace GameTheoryLab1
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(59, 26);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(179, 21);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Смешенные стратегии";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(56, 3);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(188, 17);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Поиск равновесия по Нэшу";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(61, 83);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(24, 17);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "p=";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(93, 83);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(54, 22);
+            this.textBox9.TabIndex = 3;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(154, 83);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(24, 17);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "q=";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(184, 83);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(54, 22);
+            this.textBox10.TabIndex = 5;
+            // 
+            // button13
+            // 
+            this.button13.Enabled = false;
+            this.button13.Location = new System.Drawing.Point(59, 54);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(179, 23);
+            this.button13.TabIndex = 6;
+            this.button13.Text = "Расчёт";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(272, 52);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(119, 21);
+            this.checkBox2.TabIndex = 17;
+            this.checkBox2.Text = "Биматричная";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 527);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox3);
@@ -421,6 +510,8 @@ namespace GameTheoryLab1
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,6 +553,14 @@ namespace GameTheoryLab1
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

@@ -51,6 +51,11 @@ namespace GameTheoryLab1
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -59,7 +64,6 @@ namespace GameTheoryLab1
             this.label14 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -74,10 +78,6 @@ namespace GameTheoryLab1
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button15 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -315,6 +315,56 @@ namespace GameTheoryLab1
             this.tabPage2.Text = "2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button17
+            // 
+            this.button17.Enabled = false;
+            this.button17.Location = new System.Drawing.Point(181, 277);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(81, 23);
+            this.button17.TabIndex = 22;
+            this.button17.Text = "2-й игрок";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button16
+            // 
+            this.button16.Enabled = false;
+            this.button16.Location = new System.Drawing.Point(59, 277);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(81, 23);
+            this.button16.TabIndex = 21;
+            this.button16.Text = "1-й игрок";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(107, 227);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(108, 17);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "Удаление НЛО";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(64, 6);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(188, 17);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Поиск равновесия по Нэшу";
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(110, 461);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(94, 23);
+            this.button15.TabIndex = 19;
+            this.button15.Text = "Вернуть";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button12_Click);
+            // 
             // button14
             // 
             this.button14.Enabled = false;
@@ -384,15 +434,6 @@ namespace GameTheoryLab1
             this.label13.Size = new System.Drawing.Size(28, 17);
             this.label13.TabIndex = 2;
             this.label13.Text = "p =";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(64, 6);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(188, 17);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Поиск равновесия по Нэшу";
             // 
             // checkBox1
             // 
@@ -499,7 +540,7 @@ namespace GameTheoryLab1
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(272, 6);
+            this.button5.Location = new System.Drawing.Point(271, 6);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(206, 23);
             this.button5.TabIndex = 15;
@@ -509,7 +550,7 @@ namespace GameTheoryLab1
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(484, 6);
+            this.button8.Location = new System.Drawing.Point(483, 6);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(135, 23);
             this.button8.TabIndex = 16;
@@ -527,47 +568,6 @@ namespace GameTheoryLab1
             this.checkBox2.Text = "Биматричная";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(110, 461);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(94, 23);
-            this.button15.TabIndex = 19;
-            this.button15.Text = "Вернуть";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(107, 227);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(108, 17);
-            this.label16.TabIndex = 20;
-            this.label16.Text = "Удаление НЛО";
-            // 
-            // button16
-            // 
-            this.button16.Enabled = false;
-            this.button16.Location = new System.Drawing.Point(59, 277);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(81, 23);
-            this.button16.TabIndex = 21;
-            this.button16.Text = "1-й игрок";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button17
-            // 
-            this.button17.Enabled = false;
-            this.button17.Location = new System.Drawing.Point(181, 277);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(81, 23);
-            this.button17.TabIndex = 22;
-            this.button17.Text = "2-й игрок";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // Form1
             // 
@@ -590,7 +590,7 @@ namespace GameTheoryLab1
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Теория игр";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

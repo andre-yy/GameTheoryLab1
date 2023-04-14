@@ -243,16 +243,28 @@ namespace GameTheoryLab1
                         }
 
                     }
-                    for (int i = 0; i < X; i++)
-                    {
-                        line = fs.ReadLine();
-                        str = line.Split(' ');
-                        for (int j = 0; j < Y; j++)
+                    
+                        for (int i = 0; i < X; i++)
                         {
-                            ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).AppendText(" " + str[j]);
+                            line = fs.ReadLine();
+                        try
+                        {
+                            str = line.Split(' ');
                         }
+                            catch(NullReferenceException err)
+                            {
+                            MessageBox.Show("Формат матрицы из файла для загрузки не совпадает с форматом выбранного типа матрицы", "Ошибка");
+                            return;
+                            }
+                            
+                            for (int j = 0; j < Y; j++)
+                            {
+                                ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).AppendText(" " + str[j]);
+                            }
 
-                    }
+                        }
+                    
+                    
                     fs.Close();
                 }
                 catch (ArgumentException ex)
@@ -263,6 +275,7 @@ namespace GameTheoryLab1
                 {
                     MessageBox.Show("Файл не найден", "Ошибка");
                 }
+               
             }
 
         }

@@ -119,6 +119,12 @@ namespace GameTheoryLab1
                         MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
                         return false;
                     }
+                    catch (IndexOutOfRangeException)
+                    {
+                        MessageBox.Show("Введите через пробел элементы 2-х матриц в ячейки, в соответсвии с их индексам",
+                            "Ошибка формата двойной матрицы");
+                        return false;
+                    }
                 }
             }
             return true;
@@ -633,7 +639,7 @@ namespace GameTheoryLab1
                     {
                         for (int j = 0; j < Y; j++)
                         {
-                            fs.Write(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text);
+                            fs.Write(((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text + " ");
                             
                         }
                         fs.Write("\n");
@@ -689,6 +695,10 @@ namespace GameTheoryLab1
             if (!fl) return;
             q = (A[1, 1] - A[0, 1]) / (A[0, 0] - A[0, 1] - A[1, 0] + A[1, 1]);
             p = (B[1, 1] - B[1, 0]) / (B[0, 0] - B[0, 1] - B[1, 0] + B[1, 1]);
+            if (p < 0) p = 0;
+            if (q < 0) q = 0;
+            if (p > 1) p = 1;
+            if (q > 1) q = 1;
             textBox9.Text = Convert.ToString(p);
             textBox10.Text = Convert.ToString(q);
             p = System.Math.Round(p, 2);
@@ -698,14 +708,128 @@ namespace GameTheoryLab1
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked) button14.Enabled = true; else button14.Enabled = false;
+            if (checkBox2.Checked)
+            {
+                button14.Enabled = true;
+                button16.Enabled = true;
+                button17.Enabled = true;
+
+
+            }
+            else
+            {
+                button14.Enabled = false;
+                button16.Enabled = false;
+                button17.Enabled = false;
+            }
+         }
+
+        private void Nash(double[,] A, double[,] B, int[] N1, int[] N2)
+        {
+            for (int j = 0; j < Y; j++)
+            {
+                double maxv = A[0, j];
+                int maxi = 0;
+                for (int i = 1; i < X; i++)
+                {
+                    if (A[i, j] > maxv)
+                    {
+                        maxv = A[i, j];
+                        maxi = i;
+                    }
+
+                }
+                N1[j] = maxi;
+            }
+
+            for (int i = 0; i < X; i++)
+            {
+                double maxv = B[i, 0];
+                int maxj = 0;
+                for (int j = 1; j < Y; j++)
+                {
+                    if (B[i, j] > maxv)
+                    {
+                        maxv = B[i, j];
+                        maxj = i;
+                    }
+
+                }
+                N2[i] = maxj;
+            }
         }
 
-        private void button14_Click(object sender, EventArgs e)
+
+            private void button14_Click(object sender, EventArgs e)
         {
             bool fl = getMatrix2(A, B);
             if (!fl) return;
+            int[] N1 = new int[Y];
+            int[] N2 = new int[X];
 
+            Nash(A, B, N1, N2);
+
+            for (int i = 0; i < X; i++)
+            {
+                for (int j = 0; j < Y; j++)
+                {
+                    if ((N1[j] == i) && (N2[i] == j)) ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = Color.Yellow;
+                }
+            }
+
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            bool fl = getMatrix2(A, B);
+            if (!fl) return;
+            int[] N1 = new int[Y];
+            int[] N2 = new int[X];
+            Nash(A, B, N1, N2);
+            bool fl1;
+
+            for (int i = 0; i < X; i++)
+            {
+                fl1 = false;
+                for (int j = 0; j < Y; j++)
+                {
+                    if (N1[j] == i) fl1 = true;
+                }
+                if (!fl1)
+                {
+                    for (int j = 0; j < Y; j++)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = "";
+                    }
+                }
+            }
+
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            bool fl = getMatrix2(A, B);
+            if (!fl) return;
+            int[] N1 = new int[Y];
+            int[] N2 = new int[X];
+            Nash(A, B, N1, N2);
+            bool fl1;
+
+            for (int j = 0; j < Y; j++)
+            {
+                fl1 = false;
+                for (int i = 0; i < X; i++)
+                {
+                    if (N2[i] == j) fl1 = true;
+                }
+                if (!fl1)
+                {
+                    for (int i = 0; i < X; i++)
+                    {
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).Text = "";
+                    }
+                }
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

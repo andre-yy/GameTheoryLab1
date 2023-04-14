@@ -51,6 +51,16 @@ namespace GameTheoryLab1
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button14 = new System.Windows.Forms.Button();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button13 = new System.Windows.Forms.Button();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -63,17 +73,11 @@ namespace GameTheoryLab1
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button13 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -84,10 +88,10 @@ namespace GameTheoryLab1
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tabControl1.Location = new System.Drawing.Point(675, 0);
+            this.tabControl1.Location = new System.Drawing.Point(677, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(307, 527);
+            this.tabControl1.Size = new System.Drawing.Size(305, 527);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -114,7 +118,7 @@ namespace GameTheoryLab1
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(299, 498);
+            this.tabPage1.Size = new System.Drawing.Size(297, 498);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -180,9 +184,9 @@ namespace GameTheoryLab1
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(3, 274);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(294, 17);
+            this.label10.Size = new System.Drawing.Size(291, 17);
             this.label10.TabIndex = 12;
-            this.label10.Text = "Удаление сильно доминируемых стратегий";
+            this.label10.Text = "Удаление строго доминируемых стратегий";
             // 
             // label9
             // 
@@ -289,6 +293,11 @@ namespace GameTheoryLab1
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button17);
+            this.tabPage2.Controls.Add(this.button16);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.button15);
             this.tabPage2.Controls.Add(this.button14);
             this.tabPage2.Controls.Add(this.textBox11);
             this.tabPage2.Controls.Add(this.label15);
@@ -297,15 +306,104 @@ namespace GameTheoryLab1
             this.tabPage2.Controls.Add(this.label14);
             this.tabPage2.Controls.Add(this.textBox9);
             this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.checkBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(299, 498);
+            this.tabPage2.Size = new System.Drawing.Size(297, 498);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "2";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            this.button14.Enabled = false;
+            this.button14.Location = new System.Drawing.Point(59, 183);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(203, 23);
+            this.button14.TabIndex = 9;
+            this.button14.Text = "Расчёт в чистых стратегиях";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(93, 133);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(145, 22);
+            this.textBox11.TabIndex = 8;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(64, 133);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(32, 17);
+            this.label15.TabIndex = 7;
+            this.label15.Text = "σ = ";
+            // 
+            // button13
+            // 
+            this.button13.Enabled = false;
+            this.button13.Location = new System.Drawing.Point(59, 54);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(203, 23);
+            this.button13.TabIndex = 6;
+            this.button13.Text = "Расчёт";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(184, 83);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(54, 22);
+            this.textBox10.TabIndex = 5;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(154, 83);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(28, 17);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "q =";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(93, 83);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(54, 22);
+            this.textBox9.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(61, 83);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(28, 17);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "p =";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(64, 6);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(188, 17);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Поиск равновесия по Нэшу";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(67, 26);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(179, 21);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Смешенные стратегии";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label1
             // 
@@ -419,69 +517,6 @@ namespace GameTheoryLab1
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(59, 26);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(179, 21);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Смешенные стратегии";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(56, 3);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(188, 17);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Поиск равновесия по Нэшу";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(61, 83);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(28, 17);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "p =";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(93, 83);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(54, 22);
-            this.textBox9.TabIndex = 3;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(154, 83);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(28, 17);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "q =";
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(184, 83);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(54, 22);
-            this.textBox10.TabIndex = 5;
-            // 
-            // button13
-            // 
-            this.button13.Enabled = false;
-            this.button13.Location = new System.Drawing.Point(59, 54);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(179, 23);
-            this.button13.TabIndex = 6;
-            this.button13.Text = "Расчёт";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
@@ -493,32 +528,46 @@ namespace GameTheoryLab1
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
-            // label15
+            // button15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(64, 133);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(32, 17);
-            this.label15.TabIndex = 7;
-            this.label15.Text = "σ = ";
+            this.button15.Location = new System.Drawing.Point(110, 461);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(94, 23);
+            this.button15.TabIndex = 19;
+            this.button15.Text = "Вернуть";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button12_Click);
             // 
-            // textBox11
+            // label16
             // 
-            this.textBox11.Location = new System.Drawing.Point(93, 133);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(145, 22);
-            this.textBox11.TabIndex = 8;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(107, 227);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(108, 17);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "Удаление НЛО";
             // 
-            // button14
+            // button16
             // 
-            this.button14.Enabled = false;
-            this.button14.Location = new System.Drawing.Point(59, 181);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(179, 23);
-            this.button14.TabIndex = 9;
-            this.button14.Text = "Чистые стратегии";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
+            this.button16.Enabled = false;
+            this.button16.Location = new System.Drawing.Point(59, 277);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(81, 23);
+            this.button16.TabIndex = 21;
+            this.button16.Text = "1-й игрок";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button17
+            // 
+            this.button17.Enabled = false;
+            this.button17.Location = new System.Drawing.Point(181, 277);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(81, 23);
+            this.button17.TabIndex = 22;
+            this.button17.Text = "2-й игрок";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // Form1
             // 
@@ -599,6 +648,10 @@ namespace GameTheoryLab1
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button16;
     }
 }
 

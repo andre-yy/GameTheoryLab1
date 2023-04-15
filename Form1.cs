@@ -141,7 +141,7 @@ namespace GameTheoryLab1
                     }
                     catch (FormatException e)
                     {
-                        MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
+                        //MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
                         ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = Color.Red;
                         return false;
                     }
@@ -194,8 +194,16 @@ namespace GameTheoryLab1
 
             private void button1_Click(object sender, EventArgs e)
         {
-            X = Convert.ToInt32(textBox1.Text);
-            Y = Convert.ToInt32(textBox2.Text);
+            if ((textBox1.Text != "") && (textBox2.Text != "") && (Convert.ToInt32(textBox1.Text) > 0) && (Convert.ToInt32(textBox2.Text) > 0))
+            {
+                X = Convert.ToInt32(textBox1.Text);
+                Y = Convert.ToInt32(textBox2.Text);
+            }
+            else
+            {
+                MessageBox.Show("Размер не может быть пустым или быть меньше нуля", "Ошибка");
+                return;
+            }
             
             A = new double[X, Y];
             B = new double[X, Y];
@@ -236,6 +244,10 @@ namespace GameTheoryLab1
                 catch (FileNotFoundException ex)
                 {
                     MessageBox.Show("Файл не найден", "Ошибка");
+                }
+                catch (NullReferenceException)
+                {
+                    MessageBox.Show("Неверный формат входного файла", "Ошибка");
                 }
             }else
             {
@@ -576,7 +588,8 @@ namespace GameTheoryLab1
                 }
                 jj++;
             }
-            for (int j = 0; j < Y; j++)
+            
+            for (int j = 1; j < Y; j++)
             {
                 if (delIndex[j] != -1) textBox12.AppendText(Convert.ToString(++delIndex[j]) + "; ");
             }
@@ -871,9 +884,12 @@ namespace GameTheoryLab1
         {
             if (checkBox1.Checked)
             {
-                textBox1.Text = "2";
-                textBox2.Text = "2";
-                button1_Click(sender, e);
+                if ((textBox1.Text != "2") && (textBox2.Text != "2"))
+                {
+                    textBox1.Text = "2";
+                    textBox2.Text = "2";
+                    button1_Click(sender, e);
+                }
                 textBox1.Enabled = false;
                 textBox2.Enabled = false;
                 button13.Enabled = true;

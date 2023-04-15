@@ -298,14 +298,12 @@ namespace GameTheoryLab1
                         for (int i = 0; i < X; i++)
                         {
                             line = fs.ReadLine();
-                        try
+                            if (line == null)
                         {
-                            str = line.Split(' ');
-                        }catch(NullReferenceException err)
-                            {
                             MessageBox.Show("Формат матрицы из файла для загрузки не совпадает с форматом выбранного типа матрицы", "Ошибка");
                             return;
-                            }
+                        } else str = line.Split(' ');
+                       
                             
                             for (int j = 0; j < Y; j++)
                             {

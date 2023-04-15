@@ -764,7 +764,7 @@ namespace GameTheoryLab1
                     if (B[i, j] > maxv)
                     {
                         maxv = B[i, j];
-                        maxj = i;
+                        maxj = j;
                     }
 
                 }

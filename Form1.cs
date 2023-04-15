@@ -22,21 +22,17 @@ namespace GameTheoryLab1
         public Form1()
         {
             InitializeComponent();
+            //my.FormBorderStyle = FormBorderStyle.FixedSingle;
+           
             A = new double[X, Y];
             B = new double[X, Y];
             my = this;
+            
+            my.MaximizeBox = false;
+            
             ShowMatrix(X, Y);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private bool softDom(double[,] A, int i1, int i2)
         {
@@ -93,6 +89,7 @@ namespace GameTheoryLab1
                     } catch (FormatException e)
                     {
                         MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = Color.Red;
                         return false;
                     }
                 }
@@ -117,6 +114,7 @@ namespace GameTheoryLab1
                     catch (FormatException e)
                     {
                         MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = Color.Red;
                         return false;
                     }
                     catch (IndexOutOfRangeException)
@@ -144,6 +142,7 @@ namespace GameTheoryLab1
                     catch (FormatException e)
                     {
                         MessageBox.Show("Не были введены значения в поля матрицы", "Пустые элементы матрицы");
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = Color.Red;
                         return false;
                     }
                 }
@@ -171,12 +170,29 @@ namespace GameTheoryLab1
                     //новый текстбокс с текстовкой, именем, шириной
                     var tb = new TextBox { Text = "", Name = txt, Width = 30 };
                     //добавляем
-                    tablePanel.Controls.Add(tb);
+                    tablePanel.Controls.Add(tb); 
+                    ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).MouseClick += new MouseEventHandler(tableLayoutPanel_MouseHover);
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void tableLayoutPanel_MouseHover(object sender, EventArgs e)
+        {
+            for (int i = 0; i < X; i++)
+            {
+                for (int j = 0; j < Y; j++)
+                {   
+                    
+
+                        ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).BackColor = SystemColors.Window;
+
+
+                    
+                }
+            }
+        }
+
+            private void button1_Click(object sender, EventArgs e)
         {
             X = Convert.ToInt32(textBox1.Text);
             Y = Convert.ToInt32(textBox2.Text);
@@ -352,11 +368,6 @@ namespace GameTheoryLab1
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             Random r = new Random();
@@ -517,7 +528,7 @@ namespace GameTheoryLab1
         {
             //getMatrix1(A);
             //double[,] B = new double[X, Y];
-            textBox8.Text = "";
+            textBox12.Text = "";
             int[] delIndex = new int[Y];
             for (int i = 0; i < Y; i++) delIndex[i] = i;
             bool fl;
@@ -557,7 +568,7 @@ namespace GameTheoryLab1
             }
             for (int j = 0; j < Y; j++)
             {
-                if (delIndex[j] != -1) textBox8.AppendText(Convert.ToString(++delIndex[j]) + "; ");
+                if (delIndex[j] != -1) textBox12.AppendText(Convert.ToString(++delIndex[j]) + "; ");
             }
         }
 
@@ -565,7 +576,7 @@ namespace GameTheoryLab1
         {
             //double[,] B = new double[X, Y];
             //getMatrix1(A);
-            textBox8.Text = "";
+            textBox12.Text = "";
             int[] delIndex = new int[Y];
             for (int i = 0; i < Y; i++) delIndex[i] = i;
             bool fl;
@@ -605,7 +616,7 @@ namespace GameTheoryLab1
             }
             for (int j = 0; j < Y; j++)
             {
-                if (delIndex[j] != -1) textBox8.AppendText(Convert.ToString(++delIndex[j]) + "; ");
+                if (delIndex[j] != -1) textBox12.AppendText(Convert.ToString(++delIndex[j]) + "; ");
             }
         }
 
@@ -726,6 +737,7 @@ namespace GameTheoryLab1
                 button14.Enabled = true;
                 button16.Enabled = true;
                 button17.Enabled = true;
+               
 
 
             }
@@ -907,9 +919,11 @@ namespace GameTheoryLab1
                 tablePanel.ColumnStyles[i].SizeType = SizeType.Absolute;
                 tablePanel.ColumnStyles[i].Width = 40;
             }
-
+            
             //добавляем панель
             this.Controls.Add(tablePanel);
+            //(my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).MouseHover += new EventHandler(tableLayoutPanel_MouseHover);
+            
         }
 
     }

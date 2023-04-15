@@ -245,8 +245,17 @@ namespace GameTheoryLab1
 
                     var line = fs.ReadLine();
                     string[] str = line.Split(' ');
+                    if ((str[0] == "2") && (str[1] =="2") && (checkBox1.Checked) || (!checkBox1.Checked))
+                    { 
                     textBox1.Text = str[0];
                     textBox2.Text = str[1];
+                    }
+                    else
+                    {
+                        MessageBox.Show("Для поиска равновесия по Нэшу в смешанный стратегиях необходимо, чтобы " +
+                            "матрица имела размер 2х2!", "Неверный размер матрицы в файле");
+                        return;
+                    }
 
                     button1_Click(sender, e);
                     for (int i = 0; i < X; i++)
@@ -266,8 +275,7 @@ namespace GameTheoryLab1
                         try
                         {
                             str = line.Split(' ');
-                        }
-                            catch(NullReferenceException err)
+                        }catch(NullReferenceException err)
                             {
                             MessageBox.Show("Формат матрицы из файла для загрузки не совпадает с форматом выбранного типа матрицы", "Ошибка");
                             return;

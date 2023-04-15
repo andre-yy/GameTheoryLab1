@@ -31,6 +31,7 @@ namespace GameTheoryLab1
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox12 = new System.Windows.Forms.TextBox();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@ namespace GameTheoryLab1
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
@@ -78,8 +80,6 @@ namespace GameTheoryLab1
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -95,6 +95,7 @@ namespace GameTheoryLab1
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(305, 527);
             this.tabControl1.TabIndex = 0;
+         
             // 
             // tabPage1
             // 
@@ -125,6 +126,13 @@ namespace GameTheoryLab1
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(164, 361);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(125, 22);
+            this.textBox12.TabIndex = 19;
             // 
             // button12
             // 
@@ -319,6 +327,15 @@ namespace GameTheoryLab1
             this.tabPage2.Text = "2 (только биматрицы)";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(123, 209);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(68, 17);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "(жёлтый)";
+            // 
             // button17
             // 
             this.button17.Enabled = false;
@@ -458,7 +475,6 @@ namespace GameTheoryLab1
             this.label1.Size = new System.Drawing.Size(131, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Исходная матрица";
-            
             // 
             // textBox1
             // 
@@ -571,22 +587,6 @@ namespace GameTheoryLab1
             this.checkBox2.Text = "Биматричная (ввод элементов через пробел)";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(123, 209);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(68, 17);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "(жёлтый)";
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(164, 361);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(125, 22);
-            this.textBox12.TabIndex = 19;
             // 
             // Form1
             // 

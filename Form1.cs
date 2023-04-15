@@ -172,7 +172,21 @@ namespace GameTheoryLab1
                     //добавляем
                     tablePanel.Controls.Add(tb); 
                     ((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).MouseClick += new MouseEventHandler(tableLayoutPanel_MouseHover);
+                    //((my.Controls[_TABLE_PANEL_NAME] as TableLayoutPanel).Controls[$"textBox{i},{j}"] as TextBox).TextChanged += new EventHandler(texbox_changed1);
                 }
+            }
+        }
+
+        private void texbox_changed1(object sender, EventArgs e)
+        {
+            if (!checkBox2.Checked)
+            {
+                getMatrix1(A);
+                getMatrix3(B);
+            }
+            else
+            {
+                getMatrix2(A, B);
             }
         }
 
@@ -589,7 +603,7 @@ namespace GameTheoryLab1
                 jj++;
             }
             
-            for (int j = 1; j < Y; j++)
+            for (int j = 0; j < Y; j++)
             {
                 if (delIndex[j] != -1) textBox12.AppendText(Convert.ToString(++delIndex[j]) + "; ");
             }
@@ -597,8 +611,7 @@ namespace GameTheoryLab1
 
         private void button11_Click(object sender, EventArgs e)
         {
-            //double[,] B = new double[X, Y];
-            //getMatrix1(A);
+            
             textBox12.Text = "";
             int[] delIndex = new int[Y];
             for (int i = 0; i < Y; i++) delIndex[i] = i;
@@ -879,6 +892,8 @@ namespace GameTheoryLab1
                 }
             }
         }
+
+        
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

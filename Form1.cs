@@ -388,6 +388,8 @@ namespace GameTheoryLab1
                     }
                 }
             }
+            if (!checkBox2.Checked) { getMatrix1(A); getMatrix3(B); }
+            else getMatrix2(A, B);
         }
 
         
